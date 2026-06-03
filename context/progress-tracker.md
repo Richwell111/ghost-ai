@@ -8,20 +8,21 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Current Goal
 
-- Implement the UI Design System (Shadcn UI, Lucide React, etc.)
+- Implement the Editor Chrome (Navbar, Sidebar shell)
 
 ## Completed
 
 - Project Cleanup (Boilerplate removal, minimal page.tsx)
 - 01-design-system: UI primitives and Shadcn/UI configuration
+- 02-editor: Editor Chrome Components (Navbar, Project Sidebar)
 
 ## In Progress
 
-- Next phase (Awaiting further instructions)
+- 03-canvas: Interactive Editor Canvas
 
 ## Next Up
 
-- Add the next planned feature unit here.
+- 04-features: Core Editor Features
 
 ## Open Questions
 
