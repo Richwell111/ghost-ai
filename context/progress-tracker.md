@@ -18,11 +18,11 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## In Progress
 
-- 03-canvas: Interactive Editor Canvas
+- 03-auth: User Authentication with Clerk (Provider, Pages, Protection)
 
 ## Next Up
 
-- 04-features: Core Editor Features
+- 04-canvas: Interactive Editor Canvas
 
 ## Open Questions
 
