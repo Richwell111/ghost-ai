@@ -13,21 +13,20 @@ import {
 import { cn } from "@/lib/utils"
 import { useProjectDialogs } from "@/hooks/use-project-dialogs"
 
+interface Project {
+  id: string
+  name: string
+  role?: string
+}
+
 interface ProjectSidebarProps {
   isOpen: boolean
   onClose: () => void
+  ownedProjects: Project[]
+  sharedProjects: Project[]
 }
 
-const MOCK_MY_PROJECTS = [
-  { id: "1", name: "Alpha Service", slug: "alpha-service" },
-  { id: "2", name: "Data Pipeline", slug: "data-pipeline" },
-]
-
-const MOCK_SHARED_PROJECTS = [
-  { id: "3", name: "Team Dashboard", slug: "team-dashboard" },
-]
-
-export function ProjectSidebar({ isOpen, onClose }: ProjectSidebarProps) {
+export function ProjectSidebar({ isOpen, onClose, ownedProjects, sharedProjects }: ProjectSidebarProps) {
   const { open } = useProjectDialogs()
 
   return (
@@ -73,8 +72,8 @@ export function ProjectSidebar({ isOpen, onClose }: ProjectSidebarProps) {
             </TabsList>
             
             <TabsContent value="my-projects" className="flex-1 space-y-1 overflow-y-auto outline-none">
-              {MOCK_MY_PROJECTS.length > 0 ? (
-                MOCK_MY_PROJECTS.map((project) => (
+              {ownedProjects.length > 0 ? (
+                ownedProjects.map((project) => (
                   <div
                     key={project.id}
                     className="group flex items-center justify-between rounded-lg px-3 py-2 text-sm text-[#c0c0cc] hover:bg-[#1e1e23] hover:text-white cursor-pointer"
@@ -119,8 +118,8 @@ export function ProjectSidebar({ isOpen, onClose }: ProjectSidebarProps) {
             </TabsContent>
             
             <TabsContent value="shared" className="flex-1 space-y-1 overflow-y-auto outline-none">
-              {MOCK_SHARED_PROJECTS.length > 0 ? (
-                MOCK_SHARED_PROJECTS.map((project) => (
+              {sharedProjects.length > 0 ? (
+                sharedProjects.map((project) => (
                   <div
                     key={project.id}
                     className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-[#c0c0cc] hover:bg-[#1e1e23] hover:text-white cursor-pointer"

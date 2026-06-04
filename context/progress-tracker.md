@@ -16,14 +16,19 @@ Update this file whenever the current phase, active feature, or implementation s
 - 01-design-system: UI primitives and Shadcn/UI configuration
 - 02-editor: Editor Chrome Components (Navbar, Project Sidebar)
 - 03-auth: User Authentication with Clerk (Provider, Pages, Protection, UI)
+- 04-project-dialogs: Project management shell (Create, Rename, Delete dialogs, Sidebar actions)
+- 05-prisma: Prisma Schema And Data Layer
+- 05-canvas: Interactive Editor Canvas
+- 06-project-apis: Project CRUD Endpoints
+- 07-wire-editor-home: Wire Editor Home Sidebar & Dialogs
 
 ## In Progress
 
-- 04-project-dialogs: Project management shell (Create, Rename, Delete dialogs, Sidebar actions)
+- 08-editor-workspace-shell: Workspace UI & Routing
 
 ## Next Up
 
-- 05-canvas: Interactive Editor Canvas
+- 09-share-dialog: Project Sharing & Collaboration
 
 ## Open Questions
 

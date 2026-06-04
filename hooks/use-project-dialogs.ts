@@ -5,7 +5,6 @@ type DialogType = "create" | "rename" | "delete" | null
 interface Project {
   id: string
   name: string
-  slug: string
 }
 
 interface ProjectDialogState {

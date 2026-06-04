@@ -13,12 +13,13 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { slugify } from "@/lib/utils/slugify"
+import { slugify } from "@/lib/utils"
+import { useProjectActions } from "@/hooks/use-project-actions"
 
 export function ProjectDialogs() {
   const { type, project, isOpen, close } = useProjectDialogs()
+  const { handleCreate, handleRename, handleDelete, isLoading: isActionLoading } = useProjectActions()
   const [name, setName] = React.useState("")
-  const [isLoading, setIsLoading] = React.useState(false)
 
   // Reset state when dialog opens or changes
   React.useEffect(() => {
@@ -29,15 +30,15 @@ export function ProjectDialogs() {
     }
   }, [isOpen, project])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
-    // Mock simulation
-    setTimeout(() => {
-      console.log(`${type} project:`, { name, slug: slugify(name) })
-      setIsLoading(false)
-      close()
-    }, 500)
+    if (type === "create") {
+      await handleCreate(name)
+    } else if (type === "rename" && project) {
+      await handleRename(project.id, name)
+    } else if (type === "delete" && project) {
+      await handleDelete(project.id)
+    }
   }
 
   const slug = slugify(name)
@@ -100,10 +101,10 @@ export function ProjectDialogs() {
             <Button
               type="submit"
               variant={type === "delete" ? "destructive" : "default"}
-              disabled={isLoading || (type !== "delete" && !name.trim())}
+              disabled={isActionLoading || (type !== "delete" && !name.trim())}
               className={type !== "delete" ? "bg-[#00c8d4] text-[#080809] hover:bg-[#00c8d4]/90" : ""}
             >
-              {isLoading ? "Saving..." : type === "create" ? "Create" : type === "rename" ? "Save" : "Delete"}
+              {isActionLoading ? "Saving..." : type === "create" ? "Create" : type === "rename" ? "Save" : "Delete"}
             </Button>
           </DialogFooter>
         </form>
