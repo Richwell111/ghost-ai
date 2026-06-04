@@ -3,12 +3,18 @@
 import * as React from "react"
 import { EditorNavbar } from "@/components/editor/editor-navbar"
 import { ProjectSidebar } from "@/components/editor/project-sidebar"
+import { ProjectDialogs } from "@/components/editor/project-dialogs"
+import { Button } from "@/components/ui/button"
+import { Plus } from "lucide-react"
+import { useProjectDialogs } from "@/hooks/use-project-dialogs"
 
 export default function EditorPage() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false)
 
+  const { open } = useProjectDialogs()
+
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-[#080809]">
       <EditorNavbar
         isSidebarOpen={isSidebarOpen}
         onSidebarToggle={() => setIsSidebarOpen((prev) => !prev)}
@@ -19,18 +25,30 @@ export default function EditorPage() {
         onClose={() => setIsSidebarOpen(false)}
       />
 
-      <main className="flex-1 pt-14 px-4">
-        <div className="mx-auto max-w-7xl py-12">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-6xl">
-              Ghost AI
-            </h1>
-            <p className="max-w-[600px] text-muted-foreground md:text-xl">
-              Your professional AI companion for structured thinking and creative coding.
-            </p>
+      <main className="flex-1 pt-14">
+        <div className="flex h-[calc(100vh-3.5rem)] flex-col items-center justify-center p-4">
+          <div className="mx-auto max-w-lg space-y-8 text-center px-4">
+            <div className="space-y-3">
+              <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                Create a project or open an existing one
+              </h1>
+              <p className="text-lg text-[#808090]">
+                Start a new architecture workspace, or choose a project from the sidebar.
+              </p>
+            </div>
+            
+            <Button 
+              onClick={() => open("create")}
+              className="h-12 px-8 bg-[#00c8d4] text-[#080809] hover:bg-[#00c8d4]/90 rounded-xl"
+            >
+              <Plus className="mr-2 size-5" />
+              New Project
+            </Button>
           </div>
         </div>
       </main>
+
+      <ProjectDialogs />
     </div>
   )
 }
