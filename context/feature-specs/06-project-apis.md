@@ -4,7 +4,7 @@ The database schema is ready. Build the backend project API routes only.
 
 Create REST endpoints for:
 
-- `GET /api/projects` , list current user’s projects
+- `GET /api/projects` , list all projects accessible by the user (owned and shared). Each project object must include a `role` field (`"owner"` | `"collaborator"`) to distinguish ownership for the UI.
 - `POST /api/projects` , create project
 - `PATCH /api/projects/[projectId]` , rename project
 - `DELETE /api/projects/[projectId]` , delete project
